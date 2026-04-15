@@ -1,0 +1,17 @@
+1. Phân tích I/O
+Input: withdrawAmount (Kiểu Long).
+Bẫy dữ liệu: Giá trị null, số âm, số nhỏ hơn 50k, số lẻ (không chia hết cho 10k).
+Output: * Hợp lệ: Chấp nhận request (200 OK).
+Vi phạm: Chặn đứng và báo lỗi (400 Bad Request).
+
+2. Giải pháp: Custom Annotation
+Sử dụng Custom Bean Validation (@ValidWithdrawAmount) thay vì if-else để đảm bảo:
+Clean Code: Controller không chứa logic nghiệp vụ.
+Reuse: Có thể tái sử dụng cho nhiều DTO khác nhau.
+
+3. Thuật toán kiểm tra (Pseudocode)
+Plaintext
+1. Nếu value == null hoặc value < 0 -> RETURN false
+2. Nếu value < 50,000 -> RETURN false
+3. Nếu value % 10,000 != 0 -> RETURN false
+4. Mặc định -> RETURN true
